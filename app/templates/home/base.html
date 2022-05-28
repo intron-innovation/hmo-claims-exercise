@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Intron</title>
+  <!-- icon -->
+	<link rel="shortcut icon" href="../static/images/favicon-pos.png"  type="images/customer-logo-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
+
+
+</head>
+
+<body>
+  
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
+          <span class="sr-only">Toggle</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="" class="navbar-brand">
+          <img src="" class="img-responsive" alt="Logo">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse-main">
+        <ul class="nav navbar-nav navbar-right">
+          <li> <a href="{{url_for('home.all_users')}}"> Home </a> </li>
+          <li> <a href="{{url_for('home.add_user')}}"> Add User </a> </li>
+          <li> <a href="{{url_for('home.claim')}}"> Claims </a> </li>
+          <li> <a href="{{url_for('home.create_claim')}}"> Create Claim </a> </li>
+          <li><a href="#footer">Support</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container main">
+
+    <!-- Flash messages -->
+
+    <div>
+      {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+            {% for category,  message in messages %}
+                <div class="alert alert-{{ category }} flash" role=alert> 
+                    {{ message }} 
+                    <button class="close" data-dismiss="alert">
+                        <span aria-hidden="true" > &times; </span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    {% block body %} 
+
+    {% endblock %}
+  </div>
+
+  <footer id="footer" class="container-fluid text-center footer navbar-fixed-bottom">
+ 
+    <p class="copyright">
+      Copyright &copy; 2021 - Powered by <a href="https://intron.io/" target="_blank"> Intron Health</a>
+    </p>
+  </footer>        
+  
+  <script type="application/javascript">
+    $(document).ready(function(){
+        var path = window.location.pathname.split("/").pop();
+        if (path == ''){
+            path = 'index';
+        }
+
+        // var target = $('ul li a[href="'+path+'"]');
+        var target = $("a[href$='"+path+"']");
+        target.addClass('active');
+    });
+  </script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+  <script type="application/javascript">
+    
+    $(document).ready(function () {
+        $('#userTable').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+
+</script>
+
+</body>
+</html>

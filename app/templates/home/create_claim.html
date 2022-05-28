@@ -1,0 +1,199 @@
+{% extends "home/base.html" %}
+
+{% block title %} User{% endblock %}
+
+{% block body %}
+<div class="user user-claim">
+    <h2 class="text-center">Create Claim</h2>
+    <form class="form-group claim-form" action="" method="POST">
+
+            <div class="col">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="user-claim">User</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <select name="user" id="user-claim"  class="form-control">
+                                <option value="">Select User</option>
+                                {% for data in all_users %}
+                                    <option value="{{ data[0] }}">{{ data[0] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="user-claim">Diagnosis</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <textarea name="diagnosis" id=""  class="form-control" placeholder="Diagnosis" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="user-claim">HMO</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <select name="hmo" id="user-claim"  class="form-control" required>
+                                <option value="">Select HMO</option>                        
+                                <option value="HMO1">HMO1</option>
+                                <option value="HMO2">HMO2</option>
+                                <option value="HMO3">HMO3</option>
+                                <option value="HMO4">HMO4</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="user-age">Age</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="number" id="user-age" name="age" class="form-control" placeholder="Age" min="0" value="" required readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center" id="service-section">
+                    <h3> Service Section</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="">Service Date</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="date" name="service_date" class="form-control" placeholder="Service Date" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="service_name">Service Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="text" name="service_name" class="form-control" placeholder="Service Name" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="type">Service Type</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="radio" id="type" name="type" value="Hematology">
+                            <label for="vehicle1"> Hematology</label><br>
+                            <input type="radio" id="type" name="type" value="Microbiology">
+                            <label for="vehicle2">Microbiology</label><br>
+                            <input type="radio" id="type" name="type" value="Chemical Pathology">
+                            <label for="vehicle3">Chemical Pathology</label><br>
+                            <input type="radio" id="type" name="type" value="Histopathology">
+                            <label for="vehicle3">Histopathology</label><br>
+                            <input type="radio" id="type" name="type" value="Immunology">
+                            <label for="vehicle3">Immunology</label><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="provider_name">Provider Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="text" name="provider_name" class="form-control" placeholder="Provider Name" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="source">Source</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="text" name="source" class="form-control" placeholder="Source" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="cost_of_service">Cost of Service</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="text" id="cost-of-service" name="cost_of_service" class="form-control services" placeholder="Cost of Service" onkeyup="claim()" required>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row" id="service-div">
+                    <div class="form-group">
+                        <input type="button" class="btn btn-primary" id="add-service" value="Add Another Service">
+                    </div>
+                </div>
+
+                <div class="row text-center" id="service-section">
+                    <h3> Total</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="total-cost">Total Cost</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="text" id="total-cost" name="total_cost" class="form-control" placeholder="Total Cost"required readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="service-charge">Service Charge</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="text" id="service-charge" name="service_charge" class="form-control" placeholder="Service Charge"required readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="final-cost">Final Cost</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="text" id="final-cost" name="final_cost" class="form-control" placeholder="Final Cost"required readonly>
+                        </div>
+                    </div>
+                </div>
+
+                     
+                <input type="submit" class="btn btn-success" value="Create Claim"> 
+                      
+            </div>
+            
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/claim.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "home/base.html" %}
+
+{% block title %} User{% endblock %}
+
+{% block body %}
+
+    <div class="form">
+        <h2 class="text-center">Edit User</h2>
+        <form class="form-group" action="" method="POST">
+
+            {{ form.hidden_tag() }}
+            <div class="col">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label for="name">name</label>:
+                        </div>
+                        <div class="col-sm-7">
+                            <input class="form-control" id="name" maxlength="100" minlength="3" name="name" required="" type="text" value="{{user_data.name}}">
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label for="gender">gender</label>:
+                        </div>
+                        <div class="col-sm-7">
+                                    <input id="text" name="gender" type="text" value="{{ user_data.gender }}">
+                                    <input id="gender-0" name="gender" type="radio" value="male">
+                                    <label for="gender-0">male</label>
+                                
+                                    <input id="gender-1" name="gender" type="radio" value="female">
+                                    <label for="gender-1">female</label>
+                            
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label for="salary">Salary</label>:
+                        </div>
+                        <div class="col-sm-7">
+                            <input class="form-control" id="salary" min="0" name="salary" required="" type="number" value="{{ user_data.salary }}">
+                            
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label for="date_of_birth">Date Of Birth</label>:
+                        </div>
+                        <div class="col-sm-7">
+                            <input class="form-control" id="date_of_birth" name="date_of_birth" required="" type="date" value="{{user_data.date_of_birth}}">
+                            
+                        </div>
+                    </div> 
+                    <div class="row text-center">
+                        <div class="col-sm-5">
+
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="submit" class="btn btn-success" value="Add"> 
+                        </div>
+                    </div>
+            </div>
+            
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/edit_user.js') }}"></script>
+{% endblock %}

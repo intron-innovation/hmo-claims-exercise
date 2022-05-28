@@ -1,0 +1,24 @@
+.main, .form, .claim {
+    margin-top: 40px;
+}
+
+.form input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.user-claim {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.claim-form {
+    width: 60%;
+    margin-bottom: 50px;
+}
+
+input[type="submit"] {
+    width: 100%;
+}
