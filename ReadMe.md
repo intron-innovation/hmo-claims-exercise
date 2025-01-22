@@ -1,4 +1,4 @@
-####Intron Health Take Home Interview
+### Intron Health Take Home Interview
 
 Thank you for taking out time to work on this application. 
 
@@ -15,11 +15,11 @@ All migration files are in the `intron_health_migrations/versions` directory. `A
 
 All required dependencies are in `requirements.txt` file. 
 
-A virtual environment - `venv` - was created for this project as well.
+A virtual environment - `venv` - was created for this project as well for python-3.7.
 
 Sqlite database [`instance/intron_db.db`]
  
-####Getting Started
+#### Getting Started
 Before you get started, you should execute these exports:
 ```
 export FLASK_APP=application.py;
@@ -27,7 +27,7 @@ export APP_SETTINGS=instance.config.IntronConfig;
 export FLASK_ENV=development;
 ```
 
-####Tips
+#### Tips
 To create a new versioned migration file, run:
 
 ```flask db migrate -m <name_of_file>```
@@ -46,7 +46,7 @@ To start the application, execute:
 
 When you start the application, visit http://127.0.0.1:5000/home/all/users to ensure the application starts correctly. 
 
-###Instructions
+### Instructions
 
 ##### Problem (Submit Claim): 
 
@@ -110,8 +110,6 @@ Your solution will be evaluated for:
 6. Tests
 
 In addition, please, style pages with CSS and/or JavaScript; as you see fit to demonstrate front-end capabilities.
-
-Send your finished work as a zipped file named as `Firstname_Lastname_Intron_Challenge` to `intron@intron.io`. The subject of your email should be `Intron Health Take Home Interview`.
  
 Again, thank you for considering joining our burgeoning team. 
 
