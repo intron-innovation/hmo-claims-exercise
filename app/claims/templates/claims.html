@@ -1,4 +1,4 @@
-{% extends "home/base.html" %}
+{% extends "reusables/base.html" %}
 
 {% block title %} All Users {% endblock %}
 
@@ -8,14 +8,15 @@
     <div class="row row-content">
 
         <div class="table-responsive-sm col-12">
-            {% if claims|length > 0 %}
+            {% if claims.items %}
                 <table class="table table-sm table-panel table-desktop" id="userTable">
                     <thead class="">
                         <tr>
                             <th scope="col th-sm">S/N</th>
-                            <th scope="col th-sm">Name</th>
-                            <th scope="col th-sm">Salary</th>
-                            <th scope="col th-sm">Date Joined</th>
+                            <th scope="col th-sm">Patient</th>
+                            <th scope="col th-sm">HMO</th>
+                            <th scope="col th-sm">Total Cost</th>
+                            <th scope="col th-sm">Status</th>
                             <th scope="col th-sm">Action</th>
                         </tr>
                     </thead>

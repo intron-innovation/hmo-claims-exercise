@@ -1,6 +1,6 @@
-{% extends "home/base.html" %}
+{% extends "reusables/base.html" %}
 
-{% block title %} User{% endblock %}
+{% block title %}Create Claim{% endblock %}
 
 {% block body %}
 <div class="user user-claim">
@@ -16,8 +16,8 @@
                         <div class="form-group">
                             <select name="user" id="user-claim"  class="form-control">
                                 <option value="">Select User</option>
-                                {% for data in all_users %}
-                                    <option value="{{ data[0] }}">{{ data[0] }}</option>
+                                {% for user in data.users %}
+                                    <option value="{{ user.id }}" data-age="{{ user.age }}">{{ user.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -42,11 +42,10 @@
                     <div class="col-sm-8">
                         <div class="form-group">
                             <select name="hmo" id="user-claim"  class="form-control" required>
-                                <option value="">Select HMO</option>                        
-                                <option value="HMO1">HMO1</option>
-                                <option value="HMO2">HMO2</option>
-                                <option value="HMO3">HMO3</option>
-                                <option value="HMO4">HMO4</option>
+                                <option value="">Select HMO</option>
+                                {% for hmo in data.hmo_providers %}
+                                    <option value="{{ hmo.id }}">{{ hmo.name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
@@ -195,5 +194,6 @@
     </form>
 </div>
 
-<script src="{{ url_for('static', filename='js/claim.js') }}"></script>
+<script src="{{ url_for('static', filename='js/claims/claim.js') }}"></script>
+
 {% endblock %}

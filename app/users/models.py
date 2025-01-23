@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from app import database
 from app.models import BaseModel
 
@@ -16,3 +16,7 @@ class User(BaseModel):
 
     def __repr__(self):
         return '<User: {}>'.format(self.name)
+
+    @property
+    def age(self):
+        return int(date.today().year - self.date_of_birth.year)

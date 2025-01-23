@@ -115,21 +115,11 @@ $("#add-service").click(function(){
     $("#service-div").before(serviceForm)
 })
 
-selectedUser.addEventListener('change', function() {
-    /*
-        An event on the selected user, for calculating their age
-    */
-    request = {}
-    request.age = selectedUser.value;
-    $.ajax({
-        type: 'POST',
-        url : `${url}/age/`,
-        data: request,
-        success: function(response){
-           userAge.value = response.age
-        },
-        error: function(error) {
-            console.log(error)
-        }
-    })
+selectedUser.addEventListener('change', function(age) {
+    var selectedOption = selectedUser.options[selectedUser.selectedIndex];
+
+//  Get the age from the selected option's data-age attribute
+    var age = selectedOption.getAttribute('data-age');
+
+    userAge.value = age
 });

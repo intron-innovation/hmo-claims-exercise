@@ -3,7 +3,7 @@
 <head>
   <title>Intron</title>
   <!-- icon -->
-	<link rel="shortcut icon" href="../static/images/favicon-pos.png"  type="images/customer-logo-8" >
+  <link rel="shortcut icon" href="../static/images/favicon-pos.png"  type="images/customer-logo-8" >
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -12,6 +12,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
   <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+
+  {% block css %}
+  {% endblock css %}
+
+  {% block scripts %}
+
+  {% endblock scripts %}
+
 
   <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
 
@@ -37,6 +45,8 @@
         <ul class="nav navbar-nav navbar-right">
           <li> <a href="{{url_for('users.all_users')}}"> Home </a> </li>
           <li> <a href="{{url_for('users.add_user')}}"> Add User </a> </li>
+          <li> <a href="{{url_for('claims.claims')}}"> Claims </a> </li>
+          <li> <a href="{{url_for('claims.create_claim')}}"> Add Claim </a> </li>
           <li><a href="#footer">Support</a></li>
         </ul>
       </div>

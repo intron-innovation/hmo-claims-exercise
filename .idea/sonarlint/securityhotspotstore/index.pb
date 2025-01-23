@@ -80,3 +80,19 @@ O
 Wintron_health_migrations/versions/6aaa8287eaad_update_restructured_the_claims_models.py,a/5/a55c81c63ccbf6d9dc609353b761e3ef0d611321
 ‡
 Wintron_health_migrations/versions/f040a52ce84a_update_restructured_the_claims_models.py,9/e/9e8c0732f755a5a9e9764edf902b6823668073f7
+O
+app/claims/templates/claim.html,8/5/854f9f8a53d831e839e4eca3cbaa46b598c51936
+Q
+!app/templates/reusables/base.html,e/d/ed6ac708fe7bd3d1a7bca0c404002d5aaac91b94
+P
+ app/claims/templates/claims.html,5/7/57e6e03ee2f368e603183671d78c2c87b3daaf46
+F
+app/claims/services.py,4/5/45210dfe2e94d053a4e19ee01a93594594cd74c5
+V
+&app/claims/templates/create_claim.html,a/b/ab51a585d557afdde504662e3089ba5899961fb4
+U
+%app/claims/static/js/create-claims.js,4/a/4a27e74ae81568c5387942999b67800141577512
+U
+%app/static/js/claims/create-claims.js,6/b/6b3e66d3b057c024517da11566d04e3d3c1f6d06
+M
+app/static/js/claims/claim.js,3/9/39caf5dc3a8f09c192db35e179a73eebb90704d4
