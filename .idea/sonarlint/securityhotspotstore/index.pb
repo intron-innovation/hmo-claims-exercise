@@ -92,3 +92,9 @@ J
 ,app/claims/templates/edit_claim_service.html,b/c/bc5b35a7ff37de86a8336cde6b0df880a991131a
 [
 +app/claims/templates/add_claim_service.html,6/4/6432b24a672b7670424f3aa67e89e81176049f20
+O
+app/tests/test_claims_routes.py,f/a/fa175c42ab09e02ce2e73174f2425b105fb0bca1
+E
+app/tests/__init__.py,4/4/447707a821d80cc39e532ce0179db7ddffdf17c9
+J
+instance/intron_test_db.db,d/c/dc3dd5f00b434a275587849fed88c7972781d722
