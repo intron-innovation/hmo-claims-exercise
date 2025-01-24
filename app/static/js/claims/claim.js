@@ -23,20 +23,17 @@ var serviceForm = `
                         </div>
 
                         <div class="col-sm-4">
-                        <label for="type">Service Type</label>
+                            <label for="type">Service Type</label>
                         </div>
                         <div class="col-sm-8">
                             <div class="form-group">
-                                <input type="radio" id="type" name="type" value="Hematology">
-                                <label for="vehicle1"> Hematology</label><br>
-                                <input type="radio" id="type" name="type" value="Microbiology">
-                                <label for="vehicle2">Microbiology</label><br>
-                                <input type="radio" id="type" name="type" value="Chemical Pathology">
-                                <label for="vehicle3">Chemical Pathology</label><br>
-                                <input type="radio" id="type" name="type" value="Histopathology">
-                                <label for="vehicle3">Histopathology</label><br>
-                                <input type="radio" id="type" name="type" value="Immunology">
-                                <label for="vehicle3">Immunology</label><br>
+                                <select id="claim-type" name="claim_type" class="form-control">
+                                    <option value="Hematology">Hematology</option>
+                                    <option value="Microbiology">Microbiology</option>
+                                    <option value="Chemical Pathology">Chemical Pathology</option>
+                                    <option value="Histopathology">Histopathology</option>
+                                    <option value="Immunology">Immunology</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -120,6 +117,5 @@ selectedUser.addEventListener('change', function(age) {
 
 //  Get the age from the selected option's data-age attribute
     var age = selectedOption.getAttribute('data-age');
-
     userAge.value = age
 });

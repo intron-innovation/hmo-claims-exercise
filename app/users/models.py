@@ -12,7 +12,7 @@ class User(BaseModel):
     gender = database.Column(database.String(10), nullable=True)
     date_of_birth = database.Column(database.Date, nullable=True)
     time_created = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
-    claim = database.relationship('Claim')
+    claims = database.relationship('Claim', backref="user", lazy=True)
 
     def __repr__(self):
         return '<User: {}>'.format(self.name)

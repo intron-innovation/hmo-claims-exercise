@@ -60,8 +60,13 @@ class UserService(CustomRequestService):
             self.make_500(e)
 
     def delete_user(self, id):
+        from ..claims.services import ClaimService
+
+        user = self.fetch_single_user_by_id(id)
+        claim_service = ClaimService(self.request)
+
         try:
-            user = self.fetch_single_user_by_id(id)
+            claim_service.delete_claims_for_user(user)
             self.delete_database(user)
 
             flash('User deleted successfully.', 'success')

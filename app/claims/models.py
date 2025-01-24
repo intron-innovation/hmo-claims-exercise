@@ -7,6 +7,7 @@ class HMOProvider(BaseModel):
     __tablename__ = "hmo_providers"
 
     name = database.Column(database.String(100), nullable=False, index=True)
+    claims = database.relationship('Claim', backref="hmo_provider", lazy=True)
 
     def __repr__(self):
         return f"<HMOProvider: {self.name}>"
@@ -15,28 +16,29 @@ class HMOProvider(BaseModel):
 class Claim(BaseModel):
     __tablename__ = 'claim'
 
-    user_id = database.Column(database.Integer, database.ForeignKey('user.id'), nullable=False)
+    user_id = database.Column(database.Integer, database.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     diagnosis = database.Column(database.String(1000))
-    # hmo = database.Column(database.String(4))
-    hmo_provider_id = database.Column(database.Integer, database.ForeignKey("hmo_providers.id"), nullable=False)
+    hmo_provider_id = database.Column(database.Integer, database.ForeignKey("hmo_providers.id", ondelete='CASCADE'), nullable=False)
     age = database.Column(database.Integer, nullable=True)
-    # total_cost = database.Column(database.Integer)
-    # final_cost = database.Column(database.Integer)
     services = database.relationship('Service', backref='claim', lazy=True)
+    status = database.Column(database.String(20), default="Pending")
 
     def __repr__(self):
         return f"<Claim: {self.user_id}::{self.hmo_provider_id}>"
 
-    def get_total_cost(self):
+    @property
+    def total_cost(self):
         total_cost = database.session.query(database.func.sum(Service.cost_of_service)).filter(
-            Service.claim_id == self.id).scalar()
-        return total_cost if total_cost else 0
+            Service.claim_id == self.id
+        ).scalar()
+        total_cost = total_cost if total_cost else 0
+        return f"₦{total_cost:,.2f}"
 
 
 class Service(BaseModel):
     __tablename__ = 'service'
 
-    claim_id = database.Column(database.Integer, database.ForeignKey('claim.id'), nullable=False)
+    claim_id = database.Column(database.Integer, database.ForeignKey('claim.id', ondelete='CASCADE'), nullable=False)
     service_date = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
     name = database.Column(database.String(100), nullable=False, comment="Name of specific service.")
     type_ = database.Column(database.String(50), nullable=False, comment="Options are Hematology, Microbiology, "

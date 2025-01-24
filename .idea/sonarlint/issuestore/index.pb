@@ -11,10 +11,6 @@ D
 app/__init__.py,6/b/6b5a07a517e9a3845a279675e888c81b77b9d712
 >
 application.py,e/6/e60c919c1450156c17491011eac3fe0013d7db5d
-F
-app/static/js/claim.js,a/8/a82a96b3126a301d15dd8b224492c554862133f5
-L
-app/templates/home/base.html,a/e/ae9475d8afcab0a8e52864463322f6ae620d88cb
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
@@ -22,8 +18,6 @@ D
 app/home/__init__.py,1/d/1d00d8b25fd5e3eb3daeeebd177e87033bece1c4
 A
 app/home/views.py,a/7/a7f08664523ad135b3104a4f68d54eeced2dffce
-T
-$app/templates/home/create_claim.html,2/7/2767c90b0aa4aa38140645d29c51525d72d950ff
 =
 app/models.py,e/9/e919f1e867cfa561970ba9549250f4d5bb90bcf6
 E
@@ -34,8 +28,6 @@ C
 app/claims/views.py,0/b/0bdaf312c96fba9a107c41d314e48087aebb987e
 D
 app/claims/models.py,b/3/b364475f2320b66df91db22f46dde8d4603c6507
-M
-app/templates/home/claim.html,b/b/bb6ecf6d20b26cb8c0dd87b0f8c3617c5078b830
 B
 app/users/views.py,8/0/80ecc38492d72e3e8af196cb7ebe2414133b68fe
 E
@@ -48,16 +40,8 @@ B
 app/forms.py,0/b/0bdf0d1910f4791aba158bcfa7ef18c04df7ca0e
 E
 app/users/services.py,b/6/b621073cbc60f6994f2375feb268fafa252a662f
-<
-app/utils.py,d/2/d2b046108d1c1b522dbbf815ff6124f053f98ac9
-L
-app/templates/home/home.html,8/7/8754a54a8515d396ea78050cf410cc2e466b7049
 N
 app/users/templates/users.html,3/e/3e4eca75b12acf00177b92d192d46ab733ec5789
-Q
-!app/templates/home/edit_user.html,2/4/2445c6bcf9d67f5e6d5da08e5503c33124b3ef1b
-S
-#app/templates/home/create_user.html,2/6/26cfe700a552f31a42e744094f13de96442a9036
 M
 app/templates/errors/404.html,b/8/b802e0143a0725a3354b24b6a122f690c9b628d5
 T
@@ -77,11 +61,7 @@ $intron_health_migrations/alembic.ini,9/1/9173bdd936b78f3989b41092a4e4c3d238db5
 O
 intron_health_migrations/README,b/c/bc365d033625afa8dfc58ac5e0fb5d07925859a6
 ‡
-Wintron_health_migrations/versions/6aaa8287eaad_update_restructured_the_claims_models.py,a/5/a55c81c63ccbf6d9dc609353b761e3ef0d611321
-‡
 Wintron_health_migrations/versions/f040a52ce84a_update_restructured_the_claims_models.py,9/e/9e8c0732f755a5a9e9764edf902b6823668073f7
-O
-app/claims/templates/claim.html,8/5/854f9f8a53d831e839e4eca3cbaa46b598c51936
 Q
 !app/templates/reusables/base.html,e/d/ed6ac708fe7bd3d1a7bca0c404002d5aaac91b94
 P
@@ -91,8 +71,24 @@ F
 V
 &app/claims/templates/create_claim.html,a/b/ab51a585d557afdde504662e3089ba5899961fb4
 U
-%app/claims/static/js/create-claims.js,4/a/4a27e74ae81568c5387942999b67800141577512
-U
 %app/static/js/claims/create-claims.js,6/b/6b3e66d3b057c024517da11566d04e3d3c1f6d06
 M
 app/static/js/claims/claim.js,3/9/39caf5dc3a8f09c192db35e179a73eebb90704d4
+b
+2intron_health_migrations/versions/13e662c2d128_.py,c/c/cc5c1c2c2c311e3d267992f1886a36b329e4b02c
+V
+&app/claims/templates/single-claim.html,c/1/c1ad51fb247d67ff14b1e39ab3bdd0dd81b483cd
+T
+$app/claims/templates/claim_data.html,7/3/738e2922128ab1e076853ef21c90b9fd59cfbe74
+T
+$app/claims/templates/edit_claim.html,b/6/b6e0c2ede85f1a3a5bb81704a8371ca19bbd9fb9
+b
+2intron_health_migrations/versions/9e48d78b7538_.py,6/c/6c4abae06746ce9bec3a39ad27f57e967769c570
+b
+2intron_health_migrations/versions/e5a38e99369d_.py,2/9/29bf0d3e652ddfd27b0bbd87c2413cb9276b065b
+J
+app/static/js/edit_user.js,5/2/52577d4cb4cc8b0c7342ced2b838c52cedcb665e
+\
+,app/claims/templates/edit_claim_service.html,b/c/bc5b35a7ff37de86a8336cde6b0df880a991131a
+[
++app/claims/templates/add_claim_service.html,6/4/6432b24a672b7670424f3aa67e89e81176049f20

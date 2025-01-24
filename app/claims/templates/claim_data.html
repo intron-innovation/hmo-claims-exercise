@@ -1,0 +1,140 @@
+{% extends "reusables/base.html" %}
+
+{% block body %}
+<div class="container">
+  <h2 class="text-center">Claim Details</h2>
+  <hr>
+
+  <!-- Claim Info Section -->
+  <div class="card">
+    <div class="card-body">
+      <p><strong>User:</strong> {{ claim.user.name }}</p>
+      <p><strong>Diagnosis:</strong> {{ claim.diagnosis }}</p>
+      <p><strong>HMO Provider:</strong> {{ claim.hmo_provider.name }}</p>
+      <p><strong>Age:</strong> {{ claim.age }}</p>
+      <p><strong>Status:</strong>
+        <span class="label label-{{ 'success' if claim.status == 'Approved' else 'danger' if claim.status == 'Rejected' else 'warning' }}">
+          {{ claim.status }}
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <br>
+
+  <!-- Services Table -->
+  <div class="card">
+    <div class="card-header bg-secondary text-white">
+      <h4>Services</h4>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped table-bordered" id="servicesTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Service Name</th>
+            <th>Type</th>
+            <th>Provider Name</th>
+            <th>Source</th>
+            <th>Service Date</th>
+            <th>(₦)Cost</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for service in claim.services %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ service.name }}</td>
+            <td>{{ service.type_ }}</td>
+            <td>{{ service.provider_name }}</td>
+            <td>{{ service.source }}</td>
+            <td>{{ service.service_date.strftime('%Y-%m-%d') }}</td>
+            <td>{{ service.cost_of_service }}</td>
+            <td>
+              <a href="{{ url_for('claims.edit_claim_service', id=service.id) }}" class="btn btn-primary btn-sm">
+                <i class="glyphicon glyphicon-edit"></i> Edit
+              </a>
+              <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteServiceModal-{{ service.id }}">
+                <i class="glyphicon glyphicon-trash"></i> Delete
+              </button>
+
+              <!-- Delete Service Modal -->
+              <div class="modal fade" id="deleteServiceModal-{{ service.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteServiceModalLabel-{{ service.id }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="deleteServiceModalLabel-{{ service.id }}">Confirm Delete</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to delete this service? This action cannot be undone.
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <form action="{{ url_for('claims.delete_claim_service', id=service.id) }}" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="7" class="text-right"><strong>Total Cost:</strong></td>
+            <td>{{ claim.total_cost }}</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <!-- Add Service Button -->
+      <div class="text-right mt-3">
+        <a href="{{ url_for('claims.add_claim_service', id=claim.id) }}" class="btn btn-success">
+          <i class="glyphicon glyphicon-plus"></i> Add Service
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <!-- Action Buttons -->
+  <div class="">
+    <a href="{{ url_for('claims.edit_claim', id=claim.id) }}" class="btn btn-primary">
+      <i class="glyphicon glyphicon-edit"></i> Edit
+    </a>
+    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+      <i class="glyphicon glyphicon-trash"></i> Delete
+    </button>
+  </div>
+
+  <!-- Delete Claim Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this claim? This action cannot be undone.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <form action="{{ url_for('claims.delete_claim', id=claim.id) }}" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

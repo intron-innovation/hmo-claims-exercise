@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="form-group">
-                            <select name="hmo" id="user-claim"  class="form-control" required>
+                            <select name="hmo_provider" id="user-claim-hmo"  class="form-control" required>
                                 <option value="">Select HMO</option>
                                 {% for hmo in data.hmo_providers %}
                                     <option value="{{ hmo.id }}">{{ hmo.name }}</option>
@@ -94,16 +94,13 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="form-group">
-                            <input type="radio" id="type" name="type" value="Hematology">
-                            <label for="vehicle1"> Hematology</label><br>
-                            <input type="radio" id="type" name="type" value="Microbiology">
-                            <label for="vehicle2">Microbiology</label><br>
-                            <input type="radio" id="type" name="type" value="Chemical Pathology">
-                            <label for="vehicle3">Chemical Pathology</label><br>
-                            <input type="radio" id="type" name="type" value="Histopathology">
-                            <label for="vehicle3">Histopathology</label><br>
-                            <input type="radio" id="type" name="type" value="Immunology">
-                            <label for="vehicle3">Immunology</label><br>
+                            <select id="claim-type" name="claim_type" class="form-control">
+                                <option value="Hematology">Hematology</option>
+                                <option value="Microbiology">Microbiology</option>
+                                <option value="Chemical Pathology">Chemical Pathology</option>
+                                <option value="Histopathology">Histopathology</option>
+                                <option value="Immunology">Immunology</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -159,7 +156,7 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="form-group">
-                            <input type="text" id="total-cost" name="total_cost" class="form-control" placeholder="Total Cost"required readonly>
+                            <input type="text" id="total-cost" name="total_cost" class="form-control" placeholder="Total Cost" required readonly>
                         </div>
                     </div>
                 </div>
@@ -170,7 +167,7 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="form-group">
-                            <input type="text" id="service-charge" name="service_charge" class="form-control" placeholder="Service Charge"required readonly>
+                            <input type="text" id="service-charge" name="service_charge" class="form-control" placeholder="Service Charge" required readonly>
                         </div>
                     </div>
                 </div>
@@ -181,11 +178,10 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="form-group">
-                            <input type="text" id="final-cost" name="final_cost" class="form-control" placeholder="Final Cost"required readonly>
+                            <input type="text" id="final-cost" name="final_cost" class="form-control" placeholder="Final Cost" required readonly>
                         </div>
                     </div>
                 </div>
-
                      
                 <input type="submit" class="btn btn-success" value="Create Claim"> 
                       
