@@ -24,9 +24,8 @@ logger = logging.getLogger('alembic.env')
 from flask import current_app
 config.set_main_option('sqlalchemy.url',
                        current_app.config.get('SQLALCHEMY_DATABASE_URI'))
-# target_metadata = current_app.extensions['migrate'].db.metadata
-from app import database
-target_metadata = database.Model.metadata
+target_metadata = current_app.extensions['migrate'].db.metadata
+
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
@@ -76,7 +75,6 @@ def run_migrations_online():
         config.get_section(config.config_ini_section),
         prefix='sqlalchemy.',
         poolclass=pool.NullPool,
-        pool_pre_ping = True
     )
 
     with connectable.connect() as connection:
@@ -84,15 +82,10 @@ def run_migrations_online():
             connection=connection,
             target_metadata=target_metadata,
             process_revision_directives=process_revision_directives,
-            version_table_schema=target_metadata.schema,
-            include_schemas=True,
-            compare_type=True,
-            dialect_name="sqlite",
             **current_app.extensions['migrate'].configure_args
         )
 
         with context.begin_transaction():
-            # context.execute('SET search_path TO public')
             context.run_migrations()
 
 

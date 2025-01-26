@@ -1,0 +1,78 @@
+{% extends "reusables/base.html" %}
+
+{% block title %}Edit Claim{% endblock %}
+
+{% block body %}
+<div class="user user-claim">
+    <h2 class="text-center">Edit Claim</h2>
+    <form class="form-group claim-form" action="" method="POST">
+
+            <div class="col">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="user-claim">User</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <select name="user" id="user-claim"  class="form-control">
+                                <option value="">Select User</option>
+                                {% for user in data.users %}
+                                    <option value="{{ user.id }}" {% if user.id == claim.user.id %} selected {% endif %} data-age="{{ user.age }}">{{ user.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="user-claim">Diagnosis</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <textarea name="diagnosis" id="" class="form-control" placeholder="Diagnosis" required>{{ claim.diagnosis }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="user-claim">HMO</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <select name="hmo_provider" id="user-claim-hmo" class="form-control" required>
+                                <option value="">Select HMO</option>
+                                {% for hmo in data.hmo_providers %}
+                                    <option value="{{ hmo.id }}" {% if hmo.id == claim.hmo_provider.id %} selected {% endif %}>{{ hmo.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="user-age">Age</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="number" id="user-age" name="age" class="form-control" placeholder="{{claim.age}}" min="0" value="{{ claim.age }}" required readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Save Changes">
+                    </div>
+                </div>
+
+            </div>
+
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/claims/claim.js') }}"></script>
+
+{% endblock %}

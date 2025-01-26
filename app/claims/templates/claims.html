@@ -1,0 +1,85 @@
+{% extends "reusables/base.html" %}
+
+{% block title %} All Claims {% endblock %}
+
+{% block body %}
+<div class="panel-list">
+    <h3 class="ml-2 mt-3 text-center">All Claims</h3>
+    <div class="row row-content">
+
+        <div class="table-responsive-sm col-12">
+            {% if claims.items %}
+                <table class="table table-sm table-panel table-desktop" id="userTable">
+                    <thead class="">
+                        <tr>
+                            <th scope="col th-sm">S/N</th>
+                            <th scope="col th-sm">Patient</th>
+                            <th scope="col th-sm">HMO</th>
+                            <th scope="col th-sm">Total Cost</th>
+                            <th scope="col th-sm">Status</th>
+                            <th scope="col th-sm">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for claim in claims.items|reverse %}
+                            <tr>
+                                <td scope="row">{{loop.index}}</td>
+                                <td>{{claim.user.name}}</td>
+                                <td>{{claim.hmo_provider.name}}</td>
+                                <td>{{claim.total_cost}}</td>
+                                <td>
+                                    <span class="label label-{{ 'success' if claim.status == 'Approved' else 'danger' if claim.status == 'Rejected' else 'warning' }}">
+                                        {{ claim.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{{url_for('claims.view_claim', id=claim.id)}}">
+                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                    </a>&nbsp;
+                                    {% if claim.status == 'Pending' %}
+                                        <a href="{{url_for('claims.edit_claim', id=claim.id)}}">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                        </a>&nbsp;
+                                        <a type="button" data-toggle="modal" data-target="#DeleteModal{{claim.id}}">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
+                                    {% endif %}
+
+                                   <!-- Delete Modal -->
+                                    <div class="modal fade" id="DeleteModal{{claim.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              Are you sure you want to delete this claim? This action cannot be undone.
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                              <form action="{{ url_for('claims.delete_claim', id=claim.id) }}" method="post" style="display: inline;">
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            {% else %}
+                <div class="text-center empty-table" style="display: block;">No Claims to display</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "reusables/base.html" %}
+
+{% block body %}
+<div class="container">
+  <h2 class="text-center">Edit Service</h2>
+  <hr>
+
+  <!-- Edit Service Form -->
+  <div class="card">
+    <div class="card-body">
+      <form action="{{ url_for('claims.edit_claim_service', id=service.id) }}" method="post">
+        <!-- Service Name -->
+        <div class="form-group">
+          <label for="serviceName">Service Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="serviceName"
+            name="name"
+            value="{{ service.name }}"
+            required
+          >
+        </div>
+
+        <!-- Service Type -->
+        <div class="form-group">
+          <label for="serviceType">Service Type</label>
+          <select id="claim-type" name="claim_type" class="form-control">
+              <option value="Hematology" {% if service.type_ == 'Hematology' %} selected {% endif %}>Hematology</option>
+              <option value="Microbiology" {% if service.type_ == 'Microbiology' %} selected {% endif %}>Microbiology</option>
+              <option value="Chemical Pathology" {% if service.type_ == 'Chemical Pathology' %} selected {% endif %}>Chemical Pathology</option>
+              <option value="Histopathology" {% if service.type_ == 'Histopathology' %} selected {% endif %}>Histopathology</option>
+              <option value="Immunology" {% if service.type_ == 'Immunology' %} selected {% endif %}>Immunology</option>
+          </select>
+        </div>
+
+        <!-- Provider Name -->
+        <div class="form-group">
+          <label for="providerName">Provider Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="providerName"
+            name="provider_name"
+            value="{{ service.provider_name }}"
+            required
+          >
+        </div>
+
+        <!-- Source -->
+        <div class="form-group">
+          <label for="source">Source</label>
+          <input
+            type="text"
+            class="form-control"
+            id="source"
+            name="source"
+            value="{{ service.source }}"
+            required
+          >
+        </div>
+
+        <!-- Service Date -->
+        <div class="form-group">
+          <label for="serviceDate">Service Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="serviceDate"
+            name="service_date"
+            value="{{ service.service_date.strftime('%Y-%m-%d') }}"
+            required
+          >
+        </div>
+
+        <!-- Cost -->
+        <div class="form-group">
+          <label for="costOfService">Cost</label>
+          <input
+            type="number"
+            step="0.01"
+            class="form-control"
+            id="costOfService"
+            name="cost_of_service"
+            value="{{ service.cost_of_service }}"
+            required
+          >
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="text-right">
+          <a href="{{ url_for('claims.view_claim', id=service.claim_id) }}" class="btn btn-secondary">
+            Cancel
+          </a>
+          <button type="submit" class="btn btn-success">
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

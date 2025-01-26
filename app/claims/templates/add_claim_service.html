@@ -1,0 +1,102 @@
+{% extends "reusables/base.html" %}
+
+{% block body %}
+<div class="container">
+  <h2 class="text-center">Add Service</h2>
+  <hr>
+
+  <!-- Add Service Form -->
+  <div class="card">
+    <div class="card-body">
+      <form action="{{ url_for('claims.add_claim_service', id=claim_id) }}" method="post">
+        <!-- Service Name -->
+        <div class="form-group">
+          <label for="serviceName">Service Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="serviceName"
+            name="name"
+            placeholder="Enter service name"
+            required
+          >
+        </div>
+
+        <!-- Service Type -->
+        <div class="form-group">
+          <label for="serviceType">Service Type</label>
+          <select id="claim-type" name="claim_type" class="form-control">
+              <option value="Hematology">Hematology</option>
+              <option value="Microbiology">Microbiology</option>
+              <option value="Chemical Pathology">Chemical Pathology</option>
+              <option value="Histopathology">Histopathology</option>
+              <option value="Immunology">Immunology</option>
+          </select>
+        </div>
+
+        <!-- Provider Name -->
+        <div class="form-group">
+          <label for="providerName">Provider Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="providerName"
+            name="provider_name"
+            placeholder="Enter provider name"
+            required
+          >
+        </div>
+
+        <!-- Source -->
+        <div class="form-group">
+          <label for="source">Source</label>
+          <input
+            type="text"
+            class="form-control"
+            id="source"
+            name="source"
+            placeholder="Enter source of the service"
+            required
+          >
+        </div>
+
+        <!-- Service Date -->
+        <div class="form-group">
+          <label for="serviceDate">Service Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="serviceDate"
+            name="service_date"
+            required
+          >
+        </div>
+
+        <!-- Cost -->
+        <div class="form-group">
+          <label for="costOfService">Cost</label>
+          <input
+            type="number"
+            step="0.01"
+            class="form-control"
+            id="costOfService"
+            name="cost_of_service"
+            placeholder="Enter cost of the service"
+            required
+          >
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="text-right">
+          <a href="{{ url_for('claims.view_claim', id=claim_id) }}" class="btn btn-secondary">
+            Cancel
+          </a>
+          <button type="submit" class="btn btn-primary">
+            Add Service
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "reusables/base.html" %}
+
+{% block body %}
+<div class="text-center" style="padding: 100px 0;">
+    <h1 class="display-1 text-danger">404</h1>
+    <h3 class="text-muted">Oops! What you're looking for doesn't exist.</h3>
+    <p>It looks like nothing was found at this location. Maybe go back to the homepage?</p>
+    <a href="{{ url_for('users.all_users') }}" class="btn btn-primary">Go to Home</a>
+</div>
+{% endblock %}
